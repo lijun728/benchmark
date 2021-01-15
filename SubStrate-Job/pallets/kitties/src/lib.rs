@@ -84,6 +84,8 @@ decl_module! {
         #[weight = 0]
         pub fn transfer(origin, to: T::AccountId, kitty_id: T::KittyIndex){
 			let sender = ensure_signed(origin)?;
+//---------第1题  指出视频中实现kitties的一个bug ----------
+            ensure!(Self::kitty_owner(&kitty_id))== Some(sender.clone()),Error::<T>::RequireOwner);
 			// 判断 KittyIndex 是否存在，通过 ok_or 将错误抛出来，如果没有将返回一个 option 类型的数据
 			let owner = Self::kitty_owner(kitty_id).ok_or( Error::<T>::KittyNotExists )?;
 			// 判断 KittyIndex 是否属于发送者
