@@ -71,6 +71,7 @@ decl_error! {
 		MoneyNotEnough,
         UnReserveMoneyNotEnough,
         InvalidKittyId,
+        RequireOwner,
     }
 }
 
