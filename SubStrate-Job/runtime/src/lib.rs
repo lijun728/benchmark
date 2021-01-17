@@ -278,14 +278,17 @@ impl pallet_poe::Trait for Runtime {
 	type MaxClaimLength = MaxClaimLength;
 }
 
+parameter_types! {
+	pub const NewKittyReserve: u64 = 5_000;
+}
+
 impl pallet_kitties::Trait for Runtime {
 	type Event = Event;
 	type Randomness = RandomnessCollectiveFlip;
 	type NewKittyReserve = NewKittyReserve;
-	type Currency = Balances;
 	//------第二题  KittyIndex不在pallet中指定，而是在runtime里面绑定--------
 	type KittyIndex = u32;
-	
+	type Currency = Balances;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.

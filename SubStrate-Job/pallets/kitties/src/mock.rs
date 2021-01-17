@@ -8,6 +8,7 @@ use frame_system as system;
 use frame_support::{ impl_outer_event, impl_outer_origin, parameter_types, weights::Weight};
 use sp_io;
 
+
 impl_outer_origin! {
 	pub enum Origin for Test {}
 }
@@ -35,7 +36,7 @@ impl system::Trait for Test {
 	type AccountId = u64;
 	type Lookup = IdentityLookup<Self::AccountId>;
 	type Header = Header;
-	type Event = ();
+	type Event = TestEvent;
 	type BlockHashCount = BlockHashCount;
 	type MaximumBlockWeight = MaximumBlockWeight;
 	type DbWeight = ();
@@ -46,7 +47,7 @@ impl system::Trait for Test {
 	type AvailableBlockRatio = AvailableBlockRatio;
 	type Version = ();
 	type PalletInfo = ();
-	type AccountData = ();
+	type AccountData = balances::AccountData<u64>;
 	type OnNewAccount = ();
 	type OnKilledAccount = ();
 	type SystemWeightInfo = ();
@@ -88,8 +89,6 @@ impl Trait for Test {
 	type NewKittyReserve = NewKittyReserve;
 	type Currency = balances::Module<Self>;
 }
-
-pub type TemplateModule = Module<Test>;
 
 pub type KittiesModule = Module<Test>;
 pub type System = system::Module<Test>;
